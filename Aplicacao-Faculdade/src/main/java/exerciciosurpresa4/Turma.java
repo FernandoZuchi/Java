@@ -2,6 +2,7 @@ package exerciciosurpresa4;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Turma {
 
@@ -9,7 +10,7 @@ public class Turma {
     private Disciplina disciplina;
     private List<Aluno> alunos;
     private String codigo;
-   
+
     public Turma(String codigo, Professor professor, Disciplina disciplina) {
         this.codigo = codigo;
         this.professor = professor;
@@ -47,6 +48,12 @@ public class Turma {
 
     public void adicionarAluno(Aluno aluno) {
         this.alunos.add(aluno);
+    }
+
+    public List<String> obterNomesAlunos() {
+        return alunos.stream()
+                .map(Aluno::getNome)
+                .collect(Collectors.toList());
     }
 
     public boolean alunoNaTurma(Aluno aluno) {

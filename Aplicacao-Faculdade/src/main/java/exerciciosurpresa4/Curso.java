@@ -46,9 +46,23 @@ public class Curso {
                 .collect(Collectors.toList());
     }
 
+    public List<String> obterNomesTurmas() {
+        return turmas.stream()
+                .map(Turma::getCodigo)
+                .collect(Collectors.toList());
+    }
+
     public List<Disciplina> obterDisciplinasDeAlgumaTurma() {
         return turmas.stream()
                 .map(Turma::getDisciplina)
+                .collect(Collectors.toList());
+    }
+
+    public List<String> obterNomesProfessores() {
+        return turmas.stream()
+                .map(Turma::getProfessor)
+                .map(Professor::getNome)
+                .distinct()
                 .collect(Collectors.toList());
     }
 
@@ -64,4 +78,7 @@ public class Curso {
         turmas.remove(turma);
     }
 
+    public void removerAluno(Aluno aluno) {
+        alunos.remove(aluno);
+    }
 }
